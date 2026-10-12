@@ -10,21 +10,41 @@ interface ArticleShareProps {
 
 export const ArticleShare: React.FC<ArticleShareProps> = ({ title, url, className = '' }) => {
   const [copied, setCopied] = useState(false);
+  const [copyMessage, setCopyMessage] = useState('');
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
 
   const handleCopy = async () => {
+    let copiedSuccessfully = false;
+
     try {
-      if (navigator.clipboard) {
+      if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(shareUrl);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        copiedSuccessfully = true;
       }
     } catch {
-      // Fallback
+      copiedSuccessfully = false;
+    }
+
+    if (!copiedSuccessfully) {
+      const textArea = document.createElement('textarea');
+      textArea.value = shareUrl;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      copiedSuccessfully = document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
+
+    if (copiedSuccessfully) {
       setCopied(true);
+      setCopyMessage('Article link copied to clipboard.');
       setTimeout(() => setCopied(false), 2000);
+    } else {
+      setCopyMessage('Unable to copy the article link.');
     }
   };
 
@@ -57,6 +77,7 @@ export const ArticleShare: React.FC<ArticleShareProps> = ({ title, url, classNam
 
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
+      <span className="sr-only" aria-live="polite">{copyMessage}</span>
       <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mr-1">
         <Share2 className="w-3.5 h-3.5" />
         <span>Share</span>

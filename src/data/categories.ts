@@ -5,7 +5,7 @@ export const CATEGORIES: Category[] = [
     id: 'cat-news',
     slug: 'news',
     name: 'Gaming News',
-    description: 'Breaking reports, studio acquisitions, release dates, and industry updates from across the video game landscape.',
+    description: 'Reports, studio acquisitions, release dates, and industry updates from across the video game landscape.',
     icon: 'Newspaper',
     heroImage: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80',
   },

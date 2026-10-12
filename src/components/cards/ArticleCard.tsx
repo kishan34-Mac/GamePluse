@@ -4,6 +4,7 @@ import { Clock, Calendar, Sparkles } from 'lucide-react';
 import { Article } from '../../types';
 import { formatDate } from '../../utils/formatDate';
 import { getAuthorById } from '../../data/authors';
+import { getArticlePath } from '../../utils/contentPaths';
 
 export interface ArticleCardProps {
   article: Article;
@@ -18,7 +19,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 }) => {
   const author = getAuthorById(article.authorId);
   const categoryPath = `/${article.category}`;
-  const articlePath = `/${article.category}/${article.slug}`;
+  const articlePath = getArticlePath(article);
 
   if (variant === 'horizontal') {
     return (

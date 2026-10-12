@@ -422,7 +422,7 @@ export const ARTICLES: Article[] = [
     subtitle: 'Beyond the algorithm recommendations: our editorial curation of the most inventive PC releases.',
     excerpt: 'Steam sees hundreds of games published each week. We sifted through dozens of demos and early access drops to highlight the five standout titles that deserve your immediate attention.',
     category: 'news',
-    image: 'https://images.unsplash.com/photo-1612287233207-621e25e1df4e?auto=format&fit=crop&w=1600&h=900&q=80',
+    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&h=900&q=80',
     imageCaption: 'The PC gaming ecosystem thrives on bold independent developers challenging mainstream conventions.',
     authorId: 'author-marcus-vance',
     publishedAt: '2025-02-12T15:00:00Z',

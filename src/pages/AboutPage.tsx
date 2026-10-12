@@ -15,7 +15,7 @@ export const AboutPage: React.FC = () => {
     <div className="space-y-12 max-w-4xl mx-auto">
       <SEO
         title="About Us — Editorial Mission & Standards"
-        description={`Learn about ${BRAND.name}, our editorial standards, masthead team, and mission to deliver fearless gaming journalism.`}
+        description={`Learn about the ${BRAND.name} frontend editorial-demo experience and launch requirements.`}
       />
 
       <Breadcrumbs items={breadcrumbs} />
@@ -24,7 +24,7 @@ export const AboutPage: React.FC = () => {
       <header className="space-y-4 text-center sm:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-bold uppercase tracking-wider">
           <Newspaper className="w-3.5 h-3.5" />
-          <span>The Publication</span>
+          <span>Frontend Preview</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-black font-display text-slate-900 dark:text-white tracking-tight">
@@ -43,11 +43,11 @@ export const AboutPage: React.FC = () => {
         </h2>
 
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
-          Founded on the principle of unflinching editorial integrity, <strong>GAMEPULSE</strong> serves millions of interactive entertainment enthusiasts worldwide. We reject sensationalist clickbait and commercial compromise, focusing instead on exhaustive investigative reporting, forensic hardware benchmarking, and nuanced cultural critique.
+          <strong>GAMEPULSE</strong> is a frontend preview for a gaming-media experience. The bylines, stories, review scores, and product recommendations are local demonstration content, not live reporting or verified publishing records.
         </p>
 
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
-          Whether we are evaluating a generational hardware launch like the NVIDIA Blackwell architecture, analyzing global tournament metas in the Valorant Champions Tour, or delivering a definitive 50-hour review score, our goal is singular: to be the most dependable compass in modern video gaming.
+          Before launch, replace or verify the demonstration content, confirm the editorial team and process, configure real contact channels, and publish substantiated standards and legal notices.
         </p>
       </section>
 
@@ -63,10 +63,10 @@ export const AboutPage: React.FC = () => {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h3 className="font-bold font-display text-base text-slate-900 dark:text-white">
-              Zero Commercial Interference
+              Independent Review Policy
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Our review scores and hardware recommendations are never for sale. Advertising and commercial departments operate behind an impenetrable firewall.
+              Publish a verifiable conflict-of-interest and commercial-disclosure policy before presenting reviews as independent.
             </p>
           </div>
 
@@ -75,10 +75,10 @@ export const AboutPage: React.FC = () => {
               <Zap className="w-5 h-5" />
             </div>
             <h3 className="font-bold font-display text-base text-slate-900 dark:text-white">
-              Rigorous Lab Benchmarking
+              Verifiable Testing
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Hardware tests are conducted using standardized test benches, repeatable telemetry runs, and minimum 1% low frame time tracking.
+              Publish methodology and reproducible evidence before presenting performance claims or benchmark results as tested.
             </p>
           </div>
 
@@ -87,10 +87,10 @@ export const AboutPage: React.FC = () => {
               <Award className="w-5 h-5" />
             </div>
             <h3 className="font-bold font-display text-base text-slate-900 dark:text-white">
-              Accountability & Transparency
+              Corrections Process
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              When games receive post-launch patches that alter performance, we update reviews and publish transparent changelogs.
+              Establish a public corrections process before representing the site as an active editorial publication.
             </p>
           </div>
         </div>
@@ -101,7 +101,7 @@ export const AboutPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <Users className="w-5 h-5 text-purple-600 dark:text-purple-400" />
           <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-white">
-            Editorial Masthead
+          Demonstration Byline Cards
           </h2>
         </div>
 
@@ -115,16 +115,16 @@ export const AboutPage: React.FC = () => {
       {/* Contact CTA */}
       <div className="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-center space-y-3">
         <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white">
-          Have an editorial tip or press inquiry?
+          Need to configure launch details?
         </h3>
         <p className="text-xs text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-          Our investigative newsroom operates confidential communication channels for developers, whistleblowers, and studio insiders.
+          Contact delivery is not configured in this preview. Do not submit sensitive information until a verified endpoint is available.
         </p>
         <Link
           to="/contact"
           className="inline-block px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all shadow-md"
         >
-          Contact the Newsroom &rarr;
+          View Contact Status &rarr;
         </Link>
       </div>
     </div>

@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500">
           <p>
-            &copy; {BRAND.currentYear} {BRAND.name} Media Network. All rights reserved. Built for players worldwide.
+            &copy; {BRAND.currentYear} {BRAND.name} frontend preview. Local demonstration content requires verification before publication.
           </p>
 
           <button

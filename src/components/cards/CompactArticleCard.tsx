@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from '../../types';
 import { formatDate } from '../../utils/formatDate';
+import { getArticlePath } from '../../utils/contentPaths';
 
 export interface CompactArticleCardProps {
   article: Article;
@@ -14,7 +15,7 @@ export const CompactArticleCard: React.FC<CompactArticleCardProps> = ({
   indexNumber,
   className = '',
 }) => {
-  const articlePath = `/${article.category}/${article.slug}`;
+  const articlePath = getArticlePath(article);
 
   return (
     <article

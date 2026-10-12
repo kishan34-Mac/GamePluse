@@ -7,9 +7,10 @@ import { useSearch } from '../../context/SearchContext';
 
 interface HeaderProps {
   onOpenMobileMenu: () => void;
+  isMobileMenuOpen: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu, isMobileMenuOpen }) => {
   const { theme, toggleTheme } = useTheme();
   const { openSearch } = useSearch();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -105,6 +106,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             <button
               onClick={onOpenMobileMenu}
               aria-label="Open navigation menu"
+              aria-controls="mobile-navigation-menu"
+              aria-expanded={isMobileMenuOpen}
               className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-800 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 transition-all cursor-pointer flex items-center justify-center"
             >
               <Menu className="w-5 h-5" />

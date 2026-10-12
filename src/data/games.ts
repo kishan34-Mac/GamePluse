@@ -118,3 +118,7 @@ export const GAMES: Game[] = [
 export const getGameBySlug = (slug: string): Game | undefined => {
   return GAMES.find(g => g.slug === slug);
 };
+
+export const getGameById = (id: string): Game | undefined => {
+  return GAMES.find(g => g.id === id);
+};

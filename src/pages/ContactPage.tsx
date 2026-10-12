@@ -51,23 +51,23 @@ export const ContactPage: React.FC = () => {
       return;
     }
 
-    setStatus('loading');
     setErrors({});
-
-    // Simulate realistic network latency
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1000);
+    setStatus('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const breadcrumbs = [{ label: 'CONTACT' }];
+  const contactChannels = [
+    { label: 'Editorial & News Desk', email: BRAND.editorialEmail },
+    { label: 'Review Codes & Embargoes', email: BRAND.contactEmail },
+    { label: 'Advertising & Sponsorship', email: BRAND.advertisingEmail },
+  ].filter(channel => Boolean(channel.email));
 
   return (
     <div className="space-y-12 max-w-4xl mx-auto">
       <SEO
         title="Contact Us — Newsroom & Press Inquiries"
-        description={`Get in touch with the ${BRAND.name} editorial staff, report a breaking news tip, or submit game review codes.`}
+        description={`Contact information and a local-only message form for ${BRAND.name}.`}
       />
 
       <Breadcrumbs items={breadcrumbs} />
@@ -78,7 +78,7 @@ export const ContactPage: React.FC = () => {
           Connect With {BRAND.name}
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
-          Whether you are a developer with an embargoed build, a reader with feedback, or a commercial partner, our newsroom is listening.
+          This preview includes local form validation only. Do not submit confidential or time-sensitive information until a real contact endpoint is configured.
         </p>
       </header>
 
@@ -92,10 +92,10 @@ export const ContactPage: React.FC = () => {
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white">
-                Transmission Received
+                Validation Complete
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 max-w-sm mx-auto leading-relaxed">
-                Thank you for contacting GAMEPULSE. Our editorial desk has logged your inquiry and will respond within 24 to 48 hours.
+                Your message passed local validation. This frontend preview does not send, store, or deliver contact messages.
               </p>
               <button
                 onClick={() => setStatus('idle')}
@@ -220,46 +220,34 @@ export const ContactPage: React.FC = () => {
               <span>Direct Inboxes</span>
             </h3>
 
-            <div className="space-y-3 text-xs">
-              <div>
-                <span className="text-slate-400 uppercase font-semibold block">Editorial & News Desk</span>
-                <a
-                  href={`mailto:${BRAND.editorialEmail}`}
-                  className="text-purple-600 dark:text-purple-400 font-bold hover:underline"
-                >
-                  {BRAND.editorialEmail}
-                </a>
+            {contactChannels.length > 0 ? (
+              <div className="space-y-3 text-xs">
+                {contactChannels.map(channel => (
+                  <div key={channel.label}>
+                    <span className="text-slate-400 uppercase font-semibold block">{channel.label}</span>
+                    <a
+                      href={`mailto:${channel.email}`}
+                      className="text-purple-600 dark:text-purple-400 font-bold hover:underline"
+                    >
+                      {channel.email}
+                    </a>
+                  </div>
+                ))}
               </div>
-
-              <div>
-                <span className="text-slate-400 uppercase font-semibold block">Review Codes & Embargoes</span>
-                <a
-                  href={`mailto:${BRAND.contactEmail}`}
-                  className="text-purple-600 dark:text-purple-400 font-bold hover:underline"
-                >
-                  {BRAND.contactEmail}
-                </a>
-              </div>
-
-              <div>
-                <span className="text-slate-400 uppercase font-semibold block">Advertising & Sponsorship</span>
-                <a
-                  href={`mailto:${BRAND.advertisingEmail}`}
-                  className="text-purple-600 dark:text-purple-400 font-bold hover:underline"
-                >
-                  {BRAND.advertisingEmail}
-                </a>
-              </div>
-            </div>
+            ) : (
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Direct inboxes have not been configured for this preview.
+              </p>
+            )}
           </div>
 
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 space-y-3">
             <h3 className="text-base font-bold font-display text-slate-900 dark:text-white flex items-center gap-2">
               <MessageSquare className="w-4 h-4 text-cyan-500" />
-              <span>Confidential Tips</span>
+              <span>Contact Handling</span>
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              We respect source anonymity and protect whistleblower identities. For sensitive studio leaks, please specify in the subject line.
+              This preview does not transmit or store messages. Do not use it for sensitive information.
             </p>
           </div>
         </div>

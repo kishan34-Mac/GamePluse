@@ -87,7 +87,7 @@ export const HomePage: React.FC = () => {
     <div className="space-y-14 sm:space-y-20">
       <SEO
         title="The Pulse of Gaming"
-        description={`${BRAND.name} is your premier gaming publication delivering breaking gaming news, reviews, guides, PC hardware benchmarks, and esports coverage.`}
+        description={BRAND.name + ' covers gaming news, reviews, guides, PC hardware, and esports.'}
       />
 
       {/* 1. Hero Story (Cinematic Editorial Dominant Story) */}
@@ -111,7 +111,7 @@ export const HomePage: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-1">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Breaking Dispatch</span>
+              <span>Latest Dispatches</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black font-display text-slate-900 dark:text-white">
               Latest Gaming News

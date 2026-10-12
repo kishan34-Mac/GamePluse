@@ -4,6 +4,7 @@ import { Clock, Calendar, ArrowRight, Flame } from 'lucide-react';
 import { Article } from '../../types';
 import { formatDate } from '../../utils/formatDate';
 import { getAuthorById } from '../../data/authors';
+import { getArticlePath } from '../../utils/contentPaths';
 
 export interface FeaturedArticleProps {
   article: Article;
@@ -17,7 +18,7 @@ export const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
   className = '',
 }) => {
   const author = getAuthorById(article.authorId);
-  const articlePath = `/${article.category}/${article.slug}`;
+  const articlePath = getArticlePath(article);
 
   return (
     <article
@@ -51,7 +52,7 @@ export const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
           {article.trending && (
             <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-600/90 backdrop-blur-md text-white">
               <Flame className="w-3.5 h-3.5" />
-              Breaking
+              Trending
             </span>
           )}
 

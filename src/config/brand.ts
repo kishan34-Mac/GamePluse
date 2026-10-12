@@ -14,14 +14,15 @@ export interface SocialLink {
 export const BRAND = {
   name: 'GAMEPULSE',
   tagline: 'The Pulse of Gaming',
-  subheading: 'Premium gaming journalism, breaking industry news, deep-dive reviews, hardware benchmarks, and esports coverage.',
-  url: 'https://gamepulse.media',
+  subheading: 'Gaming journalism, reviews, guides, hardware coverage, and esports.',
+  // Intentionally blank until a real production domain is configured.
+  url: (import.meta.env.VITE_SITE_URL || '').replace(/\/$/, ''),
   author: 'GAMEPULSE Editorial Team',
   foundedYear: 2024,
   currentYear: new Date().getFullYear(),
-  contactEmail: 'press@gamepulse.media',
-  editorialEmail: 'editor@gamepulse.media',
-  advertisingEmail: 'advertise@gamepulse.media',
+  contactEmail: import.meta.env.VITE_CONTACT_EMAIL || '',
+  editorialEmail: import.meta.env.VITE_EDITORIAL_EMAIL || '',
+  advertisingEmail: import.meta.env.VITE_ADVERTISING_EMAIL || '',
   
   navigation: [
     { label: 'HOME', href: '/' },
@@ -46,13 +47,8 @@ export const BRAND = {
     { label: 'RTX 5090 Benchmarks', query: 'RTX' },
   ],
 
-  socialLinks: [
-    { name: 'X / Twitter', url: 'https://twitter.com/gamepulse', icon: 'Twitter' },
-    { name: 'YouTube', url: 'https://youtube.com/@gamepulse', icon: 'Youtube' },
-    { name: 'Instagram', url: 'https://instagram.com/gamepulse', icon: 'Instagram' },
-    { name: 'Facebook', url: 'https://facebook.com/gamepulse', icon: 'Facebook' },
-    { name: 'Reddit', url: 'https://reddit.com/r/gamepulse', icon: 'Reddit' },
-  ] as SocialLink[],
+  // Add only verified, launched social profiles here.
+  socialLinks: [] as SocialLink[],
 
   footerSections: {
     explore: [

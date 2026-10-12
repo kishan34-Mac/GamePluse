@@ -11,6 +11,7 @@ import { EmptyState } from '../components/common/EmptyState';
 import { ArticleSkeleton } from '../components/common/LoadingSkeleton';
 import { Star, Calendar, Building2, Monitor, ArrowRight } from 'lucide-react';
 import { BRAND } from '../config/brand';
+import { NotFoundPage } from './NotFoundPage';
 
 
 export const GameHubPage: React.FC = () => {
@@ -58,16 +59,7 @@ export const GameHubPage: React.FC = () => {
     return <ArticleSkeleton />;
   }
 
-  if (!game) {
-    return (
-      <EmptyState
-        title="Game Hub Not Found"
-        description="The game title you requested is not currently registered in the GAMEPULSE index."
-        actionText="Back to News"
-        actionHref="/news"
-      />
-    );
-  }
+  if (!game) return <NotFoundPage />;
 
   const breadcrumbs = [
     { label: 'GAMES', href: '/games' },

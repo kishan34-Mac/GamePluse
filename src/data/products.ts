@@ -91,7 +91,7 @@ export const PRODUCTS: Product[] = [
     description: 'Ergonomic gaming comfort benchmark with 4-way L-ADAPT lumbar support, magnetic memory foam head pillow, and hybrid leatherette.',
     category: 'chair',
     pricePlaceholder: '$549.00',
-    image: 'https://images.unsplash.com/photo-1580481077191-c290417ea64b?auto=format&fit=crop&w=600&h=600&q=80',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&h=600&q=80',
     rating: 4.8,
     badge: 'Best Ergonomics',
     specs: ['4-Way L-ADAPT Lumbar', 'Magnetic Memory Pillow', 'Cold-Cure High Density Foam', 'Full-Metal 4D Armrests'],

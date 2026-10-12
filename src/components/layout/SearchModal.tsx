@@ -5,6 +5,7 @@ import { useSearch } from '../../context/SearchContext';
 import { contentService } from '../../services/contentService';
 import { Article } from '../../types';
 import { formatDate } from '../../utils/formatDate';
+import { getArticlePath } from '../../utils/contentPaths';
 
 export const SearchModal: React.FC = () => {
   const {
@@ -20,6 +21,7 @@ export const SearchModal: React.FC = () => {
   const [results, setResults] = useState<Article[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   // Focus input when opened
@@ -70,7 +72,7 @@ export const SearchModal: React.FC = () => {
   const handleSelectResult = (article: Article) => {
     addRecentSearch(query.trim() || article.title);
     closeSearch();
-    navigate(`/${article.category}/${article.slug}`);
+    navigate(getArticlePath(article));
   };
 
   const handleQuickSearch = (term: string) => {
@@ -83,6 +85,25 @@ export const SearchModal: React.FC = () => {
       addRecentSearch(query.trim());
       closeSearch();
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
+  const handleDialogKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab') return;
+
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), [href]'
+    );
+    if (!focusable?.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   };
 
@@ -101,6 +122,8 @@ export const SearchModal: React.FC = () => {
       role="dialog"
       aria-modal="true"
       aria-label="Search articles and games"
+      ref={dialogRef}
+      onKeyDown={handleDialogKeyDown}
       className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 px-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
       onClick={e => {
         if (e.target === e.currentTarget) closeSearch();
@@ -133,13 +156,19 @@ export const SearchModal: React.FC = () => {
                 setResults([]);
               }}
               className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white"
+              aria-label="Clear search"
             >
               <X className="w-4 h-4" />
             </button>
           ) : (
-            <div className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 text-[10px] text-slate-400 font-mono">
-              ESC
-            </div>
+            <button
+              type="button"
+              onClick={closeSearch}
+              aria-label="Close search"
+              className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
           )}
         </div>
 
@@ -173,10 +202,11 @@ export const SearchModal: React.FC = () => {
               {results.length > 0 ? (
                 <div className="space-y-2">
                   {results.map(article => (
-                    <div
+                    <button
+                      type="button"
                       key={article.id}
                       onClick={() => handleSelectResult(article)}
-                      className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
+                      className="group w-full text-left flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
                     >
                       <img
                         src={article.image}
@@ -199,7 +229,7 @@ export const SearchModal: React.FC = () => {
                         </p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 group-hover:translate-x-1 transition-all shrink-0" />
-                    </div>
+                    </button>
                   ))}
 
                   <button
@@ -239,12 +269,19 @@ export const SearchModal: React.FC = () => {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {recentSearches.map((term, idx) => (
-                      <span
+                      <div
                         key={idx}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs hover:bg-purple-100 dark:hover:bg-purple-950/40 hover:text-purple-600 dark:hover:text-purple-300 transition-colors group cursor-pointer"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs hover:bg-purple-100 dark:hover:bg-purple-950/40 hover:text-purple-600 dark:hover:text-purple-300 transition-colors group"
                       >
-                        <span onClick={() => handleQuickSearch(term)}>{term}</span>
                         <button
+                          type="button"
+                          onClick={() => handleQuickSearch(term)}
+                          className="px-3 py-1.5"
+                        >
+                          {term}
+                        </button>
+                        <button
+                          type="button"
                           onClick={e => {
                             e.stopPropagation();
                             removeRecentSearch(term);
@@ -254,7 +291,7 @@ export const SearchModal: React.FC = () => {
                         >
                           <X className="w-3 h-3" />
                         </button>
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>

@@ -14,6 +14,7 @@ import { EmptyState } from '../components/common/EmptyState';
 import { CardSkeleton } from '../components/common/LoadingSkeleton';
 import { Flame, Sparkles, Filter } from 'lucide-react';
 import { BRAND } from '../config/brand';
+import { NotFoundPage } from './NotFoundPage';
 
 
 interface CategoryPageProps {
@@ -96,6 +97,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ forcedCategory }) =>
   const breadcrumbs = [
     { label: categoryTitle },
   ];
+  const visibleArticles = activeTab === 'latest'
+    ? articles
+    : articles.filter(article => activeTab === 'popular' ? article.popular : article.trending);
+
+  if (!isLoading && !category) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="space-y-10 sm:space-y-12">
@@ -191,10 +199,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ forcedCategory }) =>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <CardSkeleton count={6} />
             </div>
-          ) : articles.length > 0 ? (
+          ) : visibleArticles.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {articles.map(art => (
+                {visibleArticles.map(art => (
                   <ArticleCard key={art.id} article={art} />
                 ))}
               </div>
@@ -209,8 +217,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ forcedCategory }) =>
             </>
           ) : (
             <EmptyState
-              title={`No ${categoryTitle} Articles Found`}
-              description="Our editorial team is currently drafting new dispatches for this section. Check back shortly."
+              title={`No ${activeTab} ${categoryTitle} Articles Found`}
+              description="No locally available stories match this filter yet. Try another filter or return to the latest stories."
               actionText="Return to Homepage"
               actionHref="/"
             />

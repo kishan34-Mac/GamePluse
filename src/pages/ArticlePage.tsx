@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { contentService } from '../services/contentService';
 import { Article, Author } from '../types';
 import { SEO } from '../components/common/SEO';
@@ -13,13 +13,14 @@ import { ArticleCard } from '../components/cards/ArticleCard';
 import { NewsletterCTA } from '../components/common/NewsletterCTA';
 import { AdSlot } from '../components/common/AdSlot';
 import { ArticleSkeleton } from '../components/common/LoadingSkeleton';
-import { EmptyState } from '../components/common/EmptyState';
 import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
 import { BRAND } from '../config/brand';
+import { NotFoundPage } from './NotFoundPage';
 
 
 export const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { pathname } = useLocation();
   const [article, setArticle] = useState<Article | null>(null);
   const [author, setAuthor] = useState<Author | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
@@ -34,7 +35,8 @@ export const ArticlePage: React.FC = () => {
 
       try {
         const found = await contentService.getArticleBySlug(slug);
-        if (found) {
+        const routeCategory = pathname.split('/')[1];
+        if (found && found.category === routeCategory) {
           setArticle(found);
 
           const [auth, related, all] = await Promise.all([
@@ -70,22 +72,13 @@ export const ArticlePage: React.FC = () => {
 
     fetchArticleData();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [slug]);
+  }, [slug, pathname]);
 
   if (isLoading) {
     return <ArticleSkeleton />;
   }
 
-  if (!article) {
-    return (
-      <EmptyState
-        title="Article Dispatch Not Found"
-        description="The story you are seeking may have been archived or relocated in our editorial index."
-        actionText="Browse News"
-        actionHref="/news"
-      />
-    );
-  }
+  if (!article) return <NotFoundPage />;
 
   return (
     <article className="relative space-y-12 max-w-7xl mx-auto">

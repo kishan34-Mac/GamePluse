@@ -12,10 +12,10 @@ import { ArticleCard } from '../components/cards/ArticleCard';
 import { ArticleShare } from '../components/article/ArticleShare';
 import { AdSlot } from '../components/common/AdSlot';
 import { ArticleSkeleton } from '../components/common/LoadingSkeleton';
-import { EmptyState } from '../components/common/EmptyState';
 import { formatDate } from '../utils/formatDate';
 import { Calendar, Gamepad2, Award } from 'lucide-react';
 import { BRAND } from '../config/brand';
+import { NotFoundPage } from './NotFoundPage';
 
 
 export const ReviewDetailPage: React.FC = () => {
@@ -61,16 +61,7 @@ export const ReviewDetailPage: React.FC = () => {
     return <ArticleSkeleton />;
   }
 
-  if (!review) {
-    return (
-      <EmptyState
-        title="Review Assessment Not Found"
-        description="The game review score you requested is unavailable in our archives."
-        actionText="Browse All Reviews"
-        actionHref="/reviews"
-      />
-    );
-  }
+  if (!review) return <NotFoundPage />;
 
   const breadcrumbs = [
     { label: 'REVIEWS', href: '/reviews' },

@@ -35,7 +35,7 @@ export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = ''
     setState('loading');
     setErrorMessage('');
 
-    // Simulate realistic asynchronous network call
+    // Local-only acknowledgement: no email is sent by this frontend.
     setTimeout(() => {
       setState('success');
       setEmail('');
@@ -59,7 +59,7 @@ export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = ''
         </h2>
 
         <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg mx-auto">
-          Get the latest gaming news, reviews, guides and deals delivered to your inbox every week. Zero spam, unsubscribe anytime.
+          Get ready for future GAMEPULSE newsletters. This preview validates your email locally and does not send or store it.
         </p>
 
         {state === 'success' ? (
@@ -67,7 +67,7 @@ export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = ''
             <CheckCircle className="w-12 h-12 text-emerald-400 mb-2" />
             <h3 className="text-lg font-bold text-white mb-1">You're on the VIP list!</h3>
             <p className="text-xs text-slate-300 text-center max-w-xs">
-              Check your inbox for a welcome transmission from the GAMEPULSE editors.
+              Your email passed local validation. Newsletter delivery is not configured in this preview.
             </p>
             <button
               onClick={() => setState('idle')}

@@ -12,7 +12,7 @@ export const DisclaimerPage: React.FC = () => {
     <div className="space-y-8 max-w-4xl mx-auto">
       <SEO
         title="Editorial Disclaimer & Scoring Methodology"
-        description={`Learn about ${BRAND.name}’s review scoring scale, editorial independence policy, and affiliate disclosure.`}
+        description={`Read the ${BRAND.name} editorial-content and monetization status notice.`}
       />
 
       <Breadcrumbs items={breadcrumbs} />
@@ -25,7 +25,7 @@ export const DisclaimerPage: React.FC = () => {
         <h1 className="text-3xl sm:text-5xl font-black font-display text-slate-900 dark:text-white tracking-tight">
           Editorial Disclaimer & Review Policy
         </h1>
-        <p className="text-xs text-slate-500">Effective Date: January 1, 2025 • Maintained by the GAMEPULSE Standards Desk</p>
+        <p className="text-xs text-slate-500">Frontend preview notice • Review and replace before production launch</p>
       </header>
 
       <div className="space-y-8 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">
@@ -35,10 +35,10 @@ export const DisclaimerPage: React.FC = () => {
             1. Strict Editorial Independence
           </h2>
           <p>
-            <strong>{BRAND.name}</strong> operates with complete journalistic independence. Our writers and hardware testing engineers do not accept gifts, travel expenses, or financial compensation from video game publishers, hardware manufacturers, or public relations agencies in exchange for favorable coverage or inflated review scores.
+            This frontend uses local demonstration content to present the editorial experience. It does not represent a live newsroom, independently verified reporting, or a record of commercial relationships.
           </p>
           <p>
-            All video games evaluated by {BRAND.name} are purchased directly at retail or acquired via legitimate review keys provided by publishers under standard non-disclosure embargo agreements. Review keys never influence our critical verdict.
+            Before launch, publish an editorial policy only after its claims, review process, and disclosures can be substantiated.
           </p>
         </section>
 
@@ -80,14 +80,14 @@ export const DisclaimerPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <ShoppingCart className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             <h2 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-              3. Affiliate Link Disclosure (FTC Compliance)
+              3. Affiliate and Commerce Status
             </h2>
           </div>
           <p>
-            {BRAND.name} participates in reputable affiliate marketing programs. When you click through our hardware and gear recommendation links and make a purchase, {BRAND.name} may earn an affiliate commission at zero additional cost to you.
+            No affiliate partners, retailer links, sponsored product placements, or purchase tracking are configured in this build.
           </p>
           <p>
-            These commercial partnerships have zero influence on which products are selected for testing or awarded our "Editor's Choice" badge. If a product fails our laboratory benchmarks, we report that truth plainly regardless of affiliate availability.
+            If affiliate links are added later, disclose each commercial relationship clearly and ensure that prices, availability, and claims are verified at publication time.
           </p>
         </section>
 
@@ -97,7 +97,7 @@ export const DisclaimerPage: React.FC = () => {
             4. Sponsored Content Standards
           </h2>
           <p>
-            Any editorial collaboration funded by a brand partner is distinctly flagged with a <strong>"Sponsored Editorial"</strong> badge and an explicit transparency disclaimer statement at the top of the article. Sponsored articles are held to strict factual verification.
+            No sponsored content or advertisements are configured in this build. Any future paid placement must be visibly labeled and backed by a real disclosure policy before release.
           </p>
         </section>
       </div>
