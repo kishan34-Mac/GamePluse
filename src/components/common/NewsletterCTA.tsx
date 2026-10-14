@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, CheckCircle, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from './Button';
+import { api } from '../../services/apiClient';
 
 export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = '' }) => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = ''
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
       setState('error');
@@ -35,11 +36,14 @@ export const NewsletterCTA: React.FC<{ className?: string }> = ({ className = ''
     setState('loading');
     setErrorMessage('');
 
-    // Local-only acknowledgement: no email is sent by this frontend.
-    setTimeout(() => {
+    try {
+      await api.post('/newsletter/subscribe', { email: email.trim(), consent: true });
       setState('success');
       setEmail('');
-    }, 900);
+    } catch (err: any) {
+      setState('error');
+      setErrorMessage(err.message || 'Failed to subscribe. Please try again.');
+    }
   };
 
   return (
